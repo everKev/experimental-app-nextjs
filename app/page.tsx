@@ -18,8 +18,8 @@ export default async function Home({}) {
 
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
-          <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
-          <p>Explore out cars you might like</p>
+          <h1 className="text-4xl font-extrabold">New Promos</h1>
+          <p>Explore our latest service promotions</p>
         </div>
 
         <div className="home__filters">

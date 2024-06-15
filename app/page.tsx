@@ -4,8 +4,11 @@ import SearchBar from "@/components/SearchBar";
 import Hero from "@/components/Hero";
 
 export default async function Home({}) {
-  const allCars = ["1", "2", "3"];
-  console.log(allCars);
+  // const allCars = await fetchCars() -- is not working because I am returning an object, and map
+  // does not loop over objects, only arrays!
+  // Perfect chance to see what methods I can use to pull the info out of the object
+
+  const allCars = await fetchCars();
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 

@@ -1,24 +1,44 @@
-import Image from "next/image";
-import Hero from "@/components/Hero";
+import { fetchCars } from "@/utils";
+import CarCard from "@/components/CarCard";
 import SearchBar from "@/components/SearchBar";
-import CustomerFilter from "@/components/CustomerFilter";
+import Hero from "@/components/Hero";
 
-export default function Home() {
+export default async function Home({}) {
+  const allCars = ["1", "2", "3"];
+  console.log(allCars);
+
+  const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+
   return (
     <main className="overflow-hidden">
       <Hero />
+
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
-          <h1 className="text-4xl font-extrabold"> Promo Catalogue </h1>
-          <p> Explore the current promos that matter. </p>
+          <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
+          <p>Explore out cars you might like</p>
         </div>
+
         <div className="home__filters">
           <SearchBar />
-          <div className="home__filter-container">
-            <CustomerFilter title="fuel" />
-            <CustomerFilter title="year" />
-          </div>
+
+          <div className="home__filter-container"></div>
         </div>
+
+        {!isDataEmpty ? (
+          <section>
+            <div className="home__cars-wrapper">
+              {allCars?.map((car) => (
+                <CarCard car={car} />
+              ))}
+            </div>
+          </section>
+        ) : (
+          <div className="home__error-container">
+            <h2 className="text-black text-xl font-bold">Oops, no results</h2>
+            <p>{allCars?.message}</p>
+          </div>
+        )}
       </div>
     </main>
   );

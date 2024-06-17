@@ -3,12 +3,17 @@ import CarCard from "@/components/CarCard";
 import SearchBar from "@/components/SearchBar";
 import Hero from "@/components/Hero";
 
-export default async function Home({}) {
+export default async function Home({ searchParams }) {
   // const allCars = await fetchCars() -- is not working because I am returning an object, and map
   // does not loop over objects, only arrays!
   // Perfect chance to see what methods I can use to pull the info out of the object
-
-  const allCars = await fetchCars();
+  const allCars = await fetchCars({
+    manufacturer: searchParams.manufacturer || "",
+    year: searchParams.year || 2022,
+    fuel: searchParams.fuel || "",
+    limit: searchParams.limit || 10,
+    model: searchParams.model || "",
+  });
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
